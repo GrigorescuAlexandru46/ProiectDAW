@@ -22,7 +22,7 @@ namespace ProiectDAW.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Your aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa page.";
 
             return View();
         }
