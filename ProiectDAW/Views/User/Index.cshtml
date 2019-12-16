@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "List of users";
+}
+<h2>@ViewBag.Title</h2>
+@foreach (var user in ViewBag.Users)
+{
+    <p>@user.name</p>
+    <p>@user.age</p>
+    <p>@user.description</p>
+    <a href="/user/show/@user.id">Show user profile</a>
+    <br />
+    <hr />
+    <br />
+}
+<a href="/user/new">Add another user</a>
+<br />
