@@ -10,7 +10,7 @@ namespace ProiectDAW.Controllers
 {
     public class UserController : Controller
     {
-        private UserDBContext db = new UserDBContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         public ActionResult Index()
         {
@@ -25,7 +25,8 @@ namespace ProiectDAW.Controllers
             User user = db.Users.Find(id);
             ViewBag.User = user;
             return View();
-        }
+        }
+
         public ActionResult New()
         {
             return View();

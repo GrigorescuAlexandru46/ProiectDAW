@@ -12,13 +12,8 @@ namespace ProiectDAW.Models
         [Key]
         public int id { get; set; }
         public string name { get; set; }
-        public int age;
+        public int age { get; set; }
         public string description { get; set; }
     }
 
-    public class UserDBContext : DbContext
-    {
-        public UserDBContext() : base("DBConnectionString") { }
-        public DbSet<User> Users { get; set; }
-    }
 }
