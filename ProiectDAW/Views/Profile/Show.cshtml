@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Profile of " + @ViewBag.Profile.FirstName + " " + ViewBag.Profile.LastName;
+}
+
+@if (ViewBag.CanShow) 
+{
+    <h2>@ViewBag.Title</h2>
+    <hr />
+
+    <label>First Name: </label>
+    <span>@ViewBag.Profile.FirstName</span>
+    <br />
+
+    <label>Last Name: </label>
+    <span>@ViewBag.Profile.LastName</span>
+    <br />
+
+    <label>Age: </label>
+    <span>@ViewBag.Profile.Age</span>
+    <br />
+
+    <label>Email: </label>
+    <span>@ViewBag.Profile.User.UserName</span>
+    <br />
+
+    <label>Description: </label>
+    <p>@ViewBag.Profile.Description</p>
+
+    if (ViewBag.CanEdit)
+    {
+        <a class="btn btn-success" href="/profile/edit/@ViewBag.Profile.Id">Edit profile</a>
+
+        <br />
+        <br />
+
+        <form action="/profile/delete/@ViewBag.Profile.Id" method="post">
+        @Html.HttpMethodOverride(HttpVerbs.Delete)
+        <button type="submit" class="btn btn-danger">Delete profile</button>
+    </form>
+    }
+}
+else
+{
+    <h2>This profile is private</h2>
+}
+<br />
+

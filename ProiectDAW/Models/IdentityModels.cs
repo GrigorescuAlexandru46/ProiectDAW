@@ -25,7 +25,7 @@ namespace ProiectDAW.Models
         {
         }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<Profile> Profiles { get; set; }
 
         public static ApplicationDbContext Create()
         {

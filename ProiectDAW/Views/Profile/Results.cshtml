@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "Showing results for \"" + ViewBag.searchFirstName + " " + ViewBag.searchLastName + "\"";
+}
+
+<h2>@ViewBag.Title</h2>
+<hr />
+
+@if (ViewBag.Profiles == null)
+{
+    <h2>No results</h2>
+}
+else
+{
+    foreach (var profile in ViewBag.Profiles)
+    {
+
+        <label>Full Name:</label>
+        <span>@profile.FirstName @profile.LastName</span>
+        <br />
+
+        <label>Age:</label>
+        <span>@profile.Age</span>
+        <br />
+
+        <label>Description:</label>
+        <p>@profile.Description</p>
+        <br />
+
+        <a class="btn btn-success" href="/profile/show/@profile.Id">Go to profile</a>
+        <br />
+        <hr />
+    }
+}
