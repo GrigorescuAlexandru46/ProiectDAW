@@ -1,12 +1,27 @@
 ﻿@{
+    /**/
+
     ViewBag.Title = "Profile of " + @ViewBag.Profile.FirstName + " " + ViewBag.Profile.LastName;
 }
 
-@if (ViewBag.CanShow) 
+@if (ViewBag.CanShow)
 {
     <h2>@ViewBag.Title</h2>
     <hr />
 
+    foreach (var photo in ViewBag.Profile.Photos)
+    {
+        <img src="@photo.Src" />
+        <br />
+        <form action="/photo/delete/@photo.Id" method="post">
+            @Html.HttpMethodOverride(HttpVerbs.Delete)
+            <button type="submit" class="btn btn-danger">Delete photo</button>
+        </form>
+
+
+        <br />
+    }
+    <br />
     <label>First Name: </label>
     <span>@ViewBag.Profile.FirstName</span>
     <br />
@@ -28,7 +43,7 @@
 
     if (ViewBag.CanEdit)
     {
-        <a class="btn btn-success" href="/photo/new/">Add photo</a>
+        <a class="btn btn-success" href="/photo/new/@ViewBag.Profile.Id">Add photo</a>
 
         <a class="btn btn-success" href="/profile/edit/@ViewBag.Profile.Id">Edit profile</a>
 
@@ -36,9 +51,9 @@
         <br />
 
         <form action="/profile/delete/@ViewBag.Profile.Id" method="post">
-        @Html.HttpMethodOverride(HttpVerbs.Delete)
-        <button type="submit" class="btn btn-danger">Delete profile</button>
-    </form>
+            @Html.HttpMethodOverride(HttpVerbs.Delete)
+            <button type="submit" class="btn btn-danger">Delete profile</button>
+        </form>
     }
 }
 else
