@@ -26,6 +26,7 @@ namespace ProiectDAW.Models
         }
 
         public DbSet<Profile> Profiles { get; set; }
+        public DbSet<Photo> Photos { get; set; }
 
         public static ApplicationDbContext Create()
         {

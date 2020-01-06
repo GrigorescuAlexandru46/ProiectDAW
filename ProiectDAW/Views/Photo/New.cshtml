@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Adding a new photo";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<form method="post" action="/profile/new">
+
+    <h4>Photo URL: </h4>
+    <br />
+    <input type="text" name="photoUrl" />
+    <br />
+
+    <br />
+    <button class="btn btn success" type="submit">Create user</button>
+</form>

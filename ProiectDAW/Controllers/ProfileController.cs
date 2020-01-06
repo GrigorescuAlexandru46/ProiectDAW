@@ -35,9 +35,9 @@ namespace ProiectDAW.Controllers
                     ViewBag.CanShow = true;
                 else
                     if ((profile.UserId == User.Identity.GetUserId()) || User.IsInRole("Administrator"))
-                        ViewBag.CanShow = true;
-                    else
-                        ViewBag.CanShow = false;
+                    ViewBag.CanShow = true;
+                else
+                    ViewBag.CanShow = false;
 
                 return View();
             }
@@ -60,8 +60,10 @@ namespace ProiectDAW.Controllers
             try
             {
                 profile.UserId = User.Identity.GetUserId();
+
                 db.Profiles.Add(profile);
                 db.SaveChanges();
+
                 return RedirectToAction("Show", new { id = profile.Id });
             }
             catch (Exception e)
@@ -129,7 +131,7 @@ namespace ProiectDAW.Controllers
         [Authorize(Roles = "User,Administrator")]
         public ActionResult Results(String searchFirstName, String searchLastName)
         {
-            
+
             var profiles = from profile in db.Profiles
                            where profile.FirstName == searchFirstName || profile.LastName == searchLastName
                            select profile;
