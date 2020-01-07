@@ -160,7 +160,20 @@ namespace ProiectDAW.Controllers
         {
             Profile profile = db.Profiles.Find(id);
 
+            // delete photos of this profile
+            var photos = from photo in db.Photos
+                         where photo.Profile.Id == profile.Id
+                         select photo;
+
+            List<Photo> photosList = photos.ToList();
+            foreach(Photo photo in photosList)
+            {
+                db.Photos.Remove(photo);
+            }
+
+            // delete the profile
             db.Profiles.Remove(profile);
+
             db.SaveChanges();
 
             return RedirectToAction("Index", "Home");

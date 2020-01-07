@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>All of your chats</h2>
+<hr />
+
+@foreach (var chat in ViewBag.ChatsList)
+{
+    if (ViewBag.OwnProfileId == chat.Profile1.Id)
+    {
+        <font size="4">Your chat with @chat.Profile2.FirstName @chat.Profile2.LastName</font>
+    }
+    else
+    {
+        <font size="4">Your chat with @chat.Profile1.FirstName @chat.Profile1.LastName</font>
+    }
+
+    <a class="btn btn-info" href="/chat/show/@chat.Id">Open chat</a>
+    <br />
+    <hr />
+}
+

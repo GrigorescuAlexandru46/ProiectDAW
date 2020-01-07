@@ -12,9 +12,31 @@ namespace ProiectDAW.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        public ActionResult Index()
+        public ActionResult Index(int profileId)
         {
+            var chats = from chat in db.Chats
+                        where (chat.Profile1.Id == profileId) || (chat.Profile2.Id == profileId)
+                        select chat;
+
+            List<Chat> chatsList = chats.ToList();
+
+            int ownProfileId = GetOwnProfileId();
+
+            ViewBag.ChatsList = chatsList;
+            ViewBag.OwnProfileId = ownProfileId;
+
             return View();
+        }
+
+        public int GetOwnProfileId()
+        {
+            string ownUserId = User.Identity.GetUserId();
+
+            var profiles = from profile in db.Profiles
+                           where profile.UserId == ownUserId
+                           select profile;
+
+            return profiles.ToList().First().Id;
         }
 
         public ActionResult Check(int ownProfileId, int targetProfileId)
