@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Show";
+}
+
+<h2>Conversation between @ViewBag.Chat.Profile1.FirstName @ViewBag.Chat.Profile1.LastName and @ViewBag.Chat.Profile2.FirstName @ViewBag.Chat.Profile2.LastName</h2>
+
+<br />
+<br />
+<h4>Messages: </h4>
+<hr />
+@foreach (var message in ViewBag.Chat.Messages)
+{
+    <label>@message.SenderProfile.FirstName @message.SenderProfile.LastName : </label>
+    <span>@message.Text</span>
+    <br />
+}
+<hr />
+
+<form method="post" action="/message/new/sender/@ViewBag.SenderProfile.Id/@ViewBag.Chat.Id">
+
+    <label>Message : </label>
+    <br />
+    <input type="text" name="Text" />
+    <br />
+
+    <br />
+    <button class="btn btn info" type="submit">Send Message</button>
+</form>
+

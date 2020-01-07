@@ -11,8 +11,10 @@ namespace ProiectDAW.Models
     {
         [Key]
         public int Id { get; set; }
+        [Required]
         public string Src { get; set; }
 
-        public virtual Profile Profile { get; set; }
+        public virtual Profile Profile { get; set; }
+
     }
 }

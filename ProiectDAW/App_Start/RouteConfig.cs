@@ -14,6 +14,12 @@ namespace ProiectDAW
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "NewMessage",
+                url: "message/new/sender/{senderProfileId}/{chatId}",
+                defaults: new { controller = "Message", action = "New" }
+            );
+
+            routes.MapRoute(
                 name: "CheckChat",
                 url: "chat/check/{ownProfileId}/{targetProfileId}",
                 defaults: new { controller = "Chat", action = "Check" }

@@ -257,9 +257,9 @@
     <Content Include="Views\Profile\Search.cshtml" />
     <Content Include="Views\Profile\Results.cshtml" />
     <Content Include="Views\Photo\New.cshtml" />
+    <Content Include="Views\Chat\Show.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Chat\" />
     <Folder Include="Views\Default\" />
     <Folder Include="Views\Friend\" />
     <Folder Include="Views\Message\" />
