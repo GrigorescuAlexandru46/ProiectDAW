@@ -10,7 +10,7 @@ namespace ProiectDAW.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Please enter your message before sending")]
         public string Text { get; set; }
 
         public virtual Profile SenderProfile { get; set; }

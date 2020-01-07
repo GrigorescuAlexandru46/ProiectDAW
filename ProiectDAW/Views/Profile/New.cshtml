@@ -9,21 +9,25 @@
     <label>First Name: </label>
     <br />
     <input type="text" name="FirstName" />
+    @Html.ValidationMessage("FirstName", "", new { @class = "text-danger" })
     <br />
 
     <label>Last Name: </label>
     <br />
     <input type="text" name="LastName" />
+    @Html.ValidationMessage("LastName", "", new { @class = "text-danger" })
     <br />
 
     <label>Age: </label>
     <br />
     <input type="text" name="Age" />
+    @Html.ValidationMessage("Age", "", new { @class = "text-danger" })
     <br />
 
     <label>Description: </label>
     <br />
     <input type="text" name="Description" />
+    @Html.ValidationMessage("Description", "", new { @class = "text-danger" })
     <br />
 
     <br />

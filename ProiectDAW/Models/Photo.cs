@@ -11,7 +11,7 @@ namespace ProiectDAW.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Please enter your image URL")]
         public string Src { get; set; }
 
         public virtual Profile Profile { get; set; }
