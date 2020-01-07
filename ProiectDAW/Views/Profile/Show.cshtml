@@ -41,6 +41,13 @@
     <label>Description: </label>
     <p>@ViewBag.Profile.Description</p>
 
+    if (!ViewBag.IsOwner)
+    {
+        <a class="btn btn-info" href="/chat/check/@ViewBag.OwnProfile.Id/@ViewBag.Profile.Id">Send message</a>
+        <br />
+        <br />
+    }
+
     if (ViewBag.CanEdit)
     {
         <a class="btn btn-success" href="/photo/new/@ViewBag.Profile.Id">Add photo</a>

@@ -18,6 +18,18 @@ namespace ProiectDAW.Controllers
             return View();
         }
 
+        [NonAction]
+        public Profile GetOwnProfile()
+        {
+            string ownUserId = User.Identity.GetUserId();
+
+            var profiles = from profile in db.Profiles
+                           where profile.UserId == ownUserId
+                           select profile;
+
+            return profiles.ToList().First();
+        }
+
         [Authorize(Roles = "User,Administrator")]
         public ActionResult Show(int id)
         {
@@ -39,11 +51,18 @@ namespace ProiectDAW.Controllers
                 else
                     ViewBag.CanShow = false;
 
+                if (profile.UserId == User.Identity.GetUserId())
+                    ViewBag.IsOwner = true;
+                else
+                    ViewBag.IsOwner = false;
+
+                ViewBag.OwnProfile = GetOwnProfile();
+
                 return View();
             }
             catch (Exception e)
             {
-                return Content("Exception");
+                return Content(e.ToString());
             }
         }
 
