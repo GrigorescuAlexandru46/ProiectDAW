@@ -15,6 +15,7 @@ namespace ProiectDAW.Controllers
         [Authorize(Roles = "User,Administrator")]
         public ActionResult Index()
         {
+
             return View();
         }
 
@@ -28,6 +29,25 @@ namespace ProiectDAW.Controllers
                            select profile;
 
             return profiles.ToList().First();
+        }
+
+        [NonAction]
+        public bool UserHasProfile()
+        {
+            string ownUserId = User.Identity.GetUserId();
+            var profiles = from profile in db.Profiles
+                           where profile.UserId == ownUserId
+                           select profile;
+
+            List<Profile> profilesList = profiles.ToList();
+
+            foreach(Profile profile in profilesList)
+            {
+                if (profile.UserId == User.Identity.GetUserId())
+                    return true;
+            }
+
+            return false;
         }
 
         [Authorize(Roles = "User,Administrator")]
@@ -69,6 +89,11 @@ namespace ProiectDAW.Controllers
         [Authorize(Roles = "User,Administrator")]
         public ActionResult New()
         {
+            if (UserHasProfile())
+            {
+                TempData["Error"] = "You already have a profile";
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 

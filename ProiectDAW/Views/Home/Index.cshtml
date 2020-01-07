@@ -3,3 +3,25 @@
 }
 
 <h1>Welcome to the home page</h1>
+<hr />
+
+<h4 class="text-danger">@ViewBag.message</h4>
+
+@if (ViewBag.UserHasProfile)
+{
+    <font size="5">Go to my profile</font>
+    <a class="btn btn-warning" href="/profile/show/@ViewBag.Profile.Id">Go</a>
+    <br />
+    <br />
+
+    <font size="5">Go to my chats </font>
+    <a class="btn btn-info" href="/profile/show/@ViewBag.Profile.Id"> Go </a>
+    <br />
+}
+else
+{
+    <font size="5">You currently don't have a profile</font>
+    <br />
+    <a class="btn btn-warning" href="/profile/new"> Create profile </a>
+    <br />
+}
