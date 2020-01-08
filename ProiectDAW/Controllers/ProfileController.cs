@@ -160,18 +160,36 @@ namespace ProiectDAW.Controllers
         {
             Profile profile = db.Profiles.Find(id);
 
-            // delete photos of this profile
+            // deletes the photos of this profile
             var photos = from photo in db.Photos
                          where photo.Profile.Id == profile.Id
                          select photo;
-
             List<Photo> photosList = photos.ToList();
             foreach(Photo photo in photosList)
             {
                 db.Photos.Remove(photo);
             }
 
-            // delete the profile
+            db.SaveChanges();
+
+            // deletes all the chat and the messages in which this profile takes part
+            var chats = from chat in db.Chats
+                        where (chat.Profile1.Id == profile.Id) || (chat.Profile2.Id == profile.Id)
+                        select chat;
+            List<Chat> chatsList = chats.ToList();
+            foreach (Chat chat in chatsList)
+            {
+                foreach (Message message in chat.Messages.ToList())
+                {
+                    db.Messages.Remove(message);
+                }
+                chat.Messages.Clear();
+                db.Chats.Remove(chat);
+            }
+
+            db.SaveChanges();
+
+            // deletes the profile
             db.Profiles.Remove(profile);
 
             db.SaveChanges();
